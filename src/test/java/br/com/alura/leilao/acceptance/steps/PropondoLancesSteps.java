@@ -15,16 +15,19 @@ public class PropondoLancesSteps {
 	
 	private Lance lance;
 	private Leilao leilao;
+	private Lance lance10;
+	private Lance lance15;
 	
 	@Dado("um lance válido")
 	public void dado_um_lance_válido() {
 		Usuario usuario = new Usuario("fulano");
 		lance = new Lance(usuario, BigDecimal.TEN);
+		
+		leilao = new Leilao("Tablet XPTO");
 	}
 
 	@Quando("propõe ao leilao")
 	public void quando_propõe_um_lance() {
-		leilao = new Leilao("Tablet XPTO");
 		leilao.propoe(lance);
 	}
 	
@@ -33,4 +36,29 @@ public class PropondoLancesSteps {
 		Assert.assertEquals(1, leilao.getLances().size());
 		Assert.assertEquals(BigDecimal.TEN, leilao.getLances().get(0).getValor());
 	}
+	
+	@Dado("vários lances válidos")
+	public void vários_lances_válidos() {
+		Usuario usuario1 = new Usuario("fulano");
+		lance10 = new Lance(usuario1, BigDecimal.TEN);
+		
+		Usuario usuario2 = new Usuario("beltrano");
+		lance15 = new Lance(usuario2, new BigDecimal("15.0"));
+		
+		leilao = new Leilao("Tablet XPTO");
+	}
+
+	@Quando("propõe vários lances ao leilao")
+	public void propõe_vários_lances_ao_leilao() {
+		leilao.propoe(lance10);
+		leilao.propoe(lance15);
+	}
+	
+	@Entao("os lances são aceitos")
+	public void os_lances_são_aceitos() {
+		Assert.assertEquals(2, leilao.getLances().size());
+		Assert.assertEquals(BigDecimal.TEN, leilao.getLances().get(0).getValor());
+		Assert.assertEquals(new BigDecimal("15.0"), leilao.getLances().get(1).getValor());
+	}
+	
 }
