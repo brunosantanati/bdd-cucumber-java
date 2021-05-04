@@ -1,6 +1,8 @@
-Feature: Propondo lances
+# language: pt
 
-Scenario: Propondo um único lance válido
- Given Dado um lance válido
- When Quando propõe um lance
- Then Então o lance é aceito
+Funcionalidade: Propondo lances
+
+Cenário: Propondo um único lance válido
+ Dado um lance válido
+ Quando propõe um lance
+ Então o lance é aceito
