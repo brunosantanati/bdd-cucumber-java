@@ -9,7 +9,9 @@ import br.com.alura.leilao.model.Lance;
 import br.com.alura.leilao.model.Leilao;
 import br.com.alura.leilao.model.Usuario;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -30,6 +32,16 @@ public class PropondoLancesSteps {
 	@After
 	public void tearDown() {
 		System.out.println("after");
+	}
+	
+	@BeforeStep
+	public void beforeStep() {
+		System.out.println("before step");
+	}
+	
+	@AfterStep
+	public void afterStep() {
+		System.out.println("after step");
 	}
 	
 	@Dado("um lance válido")
