@@ -48,9 +48,15 @@ public class PropondoLancesSteps {
 	 * leilao = new Leilao("Tablet XPTO"); }
 	 */
 	
-	@Dado("um lance de {double} reais do usuário {string}")
-	public void um_lance_de_reais_do_usuário_fulano(Double valor, String nomeUsuario) {
-		System.out.println(valor + " " + nomeUsuario);
+//	@Dado("um lance de {double} reais do usuário {string}")
+//	public void um_lance_de_reais_do_usuário_fulano(Double valor, String nomeUsuario) {
+//		System.out.println(valor + " " + nomeUsuario);
+//	}
+	
+	@Dado("^um lance de (\\d+[.]\\d\\d?) reais do usuário (\\w+)$")
+	public void um_lance_de_reais_do_usuario_fulano(Double valor, String nomeUsuario) {
+	    System.out.println(valor);
+	    System.out.println(nomeUsuario);
 	}
 
 	@Quando("propõe vários lances ao leilao")
