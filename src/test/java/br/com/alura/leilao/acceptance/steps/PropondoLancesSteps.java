@@ -8,10 +8,7 @@ import org.junit.Assert;
 import br.com.alura.leilao.model.Lance;
 import br.com.alura.leilao.model.Leilao;
 import br.com.alura.leilao.model.Usuario;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeStep;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -26,23 +23,25 @@ public class PropondoLancesSteps {
 	public void setup() {
 		this.lista = new ArrayList<Lance>();
 		leilao = new Leilao("Tablet XPTO");
-		System.out.println("before");
+		//System.out.println("before");
 	}
 
-	@After
-	public void tearDown() {
-		System.out.println("after");
-	}
+//	@After
+//	public void tearDown() {
+//		System.out.println("after");
+//	}
+//	
+//	@BeforeStep
+//	public void beforeStep() {
+//		System.out.println("before step");
+//	}
+//	
+//	@AfterStep
+//	public void afterStep() {
+//		System.out.println("after step");
+//	}
 	
-	@BeforeStep
-	public void beforeStep() {
-		System.out.println("before step");
-	}
-	
-	@AfterStep
-	public void afterStep() {
-		System.out.println("after step");
-	}
+	// #### Um lance válido ####
 	
 	@Dado("um lance válido")
 	public void dado_um_lance_válido() {
@@ -60,6 +59,8 @@ public class PropondoLancesSteps {
 		Assert.assertEquals(1, leilao.getLances().size());
 		Assert.assertEquals(BigDecimal.TEN, leilao.getLances().get(0).getValor());
 	}
+	
+	// #### Vários lances válidos ####
 	
 //	 @Dado("vários lances válidos") public void vários_lances_válidos() { 
 //		 Usuario usuario1 = new Usuario("fulano"); 
@@ -93,6 +94,19 @@ public class PropondoLancesSteps {
 		Assert.assertEquals(this.lista.size(), leilao.getLances().size());
 		Assert.assertEquals(this.lista.get(0).getValor(), leilao.getLances().get(0).getValor());
 		Assert.assertEquals(this.lista.get(1).getValor(), leilao.getLances().get(1).getValor());
+	}
+	
+	// #### Lances inválidos (usando Scenario Outline/Examples ou Esquema do Cenário/Exemplos) ####
+	
+	@Dado("um lance inválido de {double} reais e do usuário {string}")
+	public void um_lance_inválido_de_reais(Double valor, String nomeUsuario) {
+		System.out.println(nomeUsuario);
+	    this.lance = new Lance(new BigDecimal(valor));
+	}
+
+	@Entao("o lance não é aceito")
+	public void o_lance_não_é_aceito() {
+	    Assert.assertEquals(0, leilao.getLances().size());
 	}
 
 }
