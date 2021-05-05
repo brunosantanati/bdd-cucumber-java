@@ -44,25 +44,25 @@ public class PropondoLancesSteps {
 	// #### Um lance válido ####
 	
 	@Dado("um lance válido")
-	public void dado_um_lance_válido() {
+	public void dado_um_lance_valido() {
 		Usuario usuario = new Usuario("fulano");
 		lance = new Lance(usuario, BigDecimal.TEN);
 	}
 
 	@Quando("propõe ao leilao")
-	public void quando_propõe_um_lance() {
+	public void quando_propoe_um_lance() {
 		leilao.propoe(lance);
 	}
 
 	@Entao("o lance é aceito")
-	public void então_o_lance_é_aceito() {
+	public void entao_o_lance_eh_aceito() {
 		Assert.assertEquals(1, leilao.getLances().size());
 		Assert.assertEquals(BigDecimal.TEN, leilao.getLances().get(0).getValor());
 	}
 	
 	// #### Vários lances válidos ####
 	
-//	 @Dado("vários lances válidos") public void vários_lances_válidos() { 
+//	 @Dado("vários lances válidos") public void varios_lances_validos() { 
 //		 Usuario usuario1 = new Usuario("fulano"); 
 //		 lance10 = new Lance(usuario1, BigDecimal.TEN);
 //	 
@@ -73,7 +73,7 @@ public class PropondoLancesSteps {
 //	 }
 
 	@Dado("um lance de {double} reais do usuário {string}")
-	public void um_lance_de_reais_do_usuário_fulano(Double valor, String nomeUsuario) {
+	public void um_lance_de_reais_do_usuario_fulano(Double valor, String nomeUsuario) {
 		Lance lance = new Lance(new Usuario(nomeUsuario), new BigDecimal(valor));
 		lista.add(lance);
 	}
@@ -85,12 +85,12 @@ public class PropondoLancesSteps {
 //	}
 
 	@Quando("propõe vários lances ao leilao")
-	public void propõe_vários_lances_ao_leilao() {
+	public void propoe_varios_lances_ao_leilao() {
 		this.lista.forEach(lance -> leilao.propoe(lance));
 	}
 
 	@Entao("os lances são aceitos")
-	public void os_lances_são_aceitos() {
+	public void os_lances_sao_aceitos() {
 		Assert.assertEquals(this.lista.size(), leilao.getLances().size());
 		Assert.assertEquals(this.lista.get(0).getValor(), leilao.getLances().get(0).getValor());
 		Assert.assertEquals(this.lista.get(1).getValor(), leilao.getLances().get(1).getValor());
@@ -99,13 +99,13 @@ public class PropondoLancesSteps {
 	// #### Lances inválidos (usando Scenario Outline/Examples ou Esquema do Cenário/Exemplos) ####
 	
 	@Dado("um lance inválido de {double} reais e do usuário {string}")
-	public void um_lance_inválido_de_reais(Double valor, String nomeUsuario) {
+	public void um_lance_invalido_de_reais(Double valor, String nomeUsuario) {
 		System.out.println(nomeUsuario);
 	    this.lance = new Lance(new BigDecimal(valor));
 	}
 
 	@Entao("o lance não é aceito")
-	public void o_lance_não_é_aceito() {
+	public void o_lance_nao_eh_aceito() {
 	    Assert.assertEquals(0, leilao.getLances().size());
 	}
 
