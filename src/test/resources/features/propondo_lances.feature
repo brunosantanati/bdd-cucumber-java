@@ -31,3 +31,10 @@ Cenário: Propondo uma sequência de lances
     | 15.00 | Beltrano    |
  Quando propõe vários lances ao leilão
  Então o segundo lance não é aceito
+ 
+Cenário: Propondo uma sequência de lances do mesmo usuário
+ Dado dois lances do mesmo usuário com os valores:
+    | 10.00 |
+    | 15.00 |
+ Quando propõe vários lances ao leilão
+ Então o segundo lance não é aceito

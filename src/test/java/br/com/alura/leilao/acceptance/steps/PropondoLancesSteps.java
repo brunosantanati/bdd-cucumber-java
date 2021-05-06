@@ -133,6 +133,11 @@ public class PropondoLancesSteps {
 	    
 	}
 	
+	@Dado("dois lances do mesmo usuário com os valores:")
+	public void dois_lances_do_mesmo_usuario_com_os_valores(List<String> valores) {
+	    valores.forEach(valor -> this.lista.add(new Lance(new Usuario("Fulano"), new BigDecimal(valor))));
+	}
+	
 	@Entao("o segundo lance não é aceito")
 	public void o_segundo_lance_nao_eh_aceito() {
 		Assert.assertEquals(1, leilao.getLances().size());
