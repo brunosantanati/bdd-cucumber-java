@@ -84,7 +84,7 @@ public class PropondoLancesSteps {
 //	    System.out.println(nomeUsuario);
 //	}
 
-	@Quando("propõe vários lances ao leilao")
+	@Quando("propõe vários lances ao leilão")
 	public void propoe_varios_lances_ao_leilao() {
 		this.lista.forEach(lance -> leilao.propoe(lance));
 	}
@@ -107,6 +107,12 @@ public class PropondoLancesSteps {
 	@Entao("o lance não é aceito")
 	public void o_lance_nao_eh_aceito() {
 	    Assert.assertEquals(0, leilao.getLances().size());
+	}
+	
+	@Entao("o segundo lance não é aceito")
+	public void o_segundo_lance_nao_eh_aceito() {
+		Assert.assertEquals(1, leilao.getLances().size());
+		Assert.assertEquals(this.lista.get(0).getValor(), leilao.getLances().get(0).getValor());
 	}
 
 }

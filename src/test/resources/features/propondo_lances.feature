@@ -12,7 +12,7 @@ Cenário: Propondo um único lance válido
 Cenário: Propondo vários lances válidos
  Dado um lance de 10.0 reais do usuário "fulano"
  E um lance de 15.0 reais do usuário "beltrano"
- Quando propõe vários lances ao leilao
+ Quando propõe vários lances ao leilão
  Então os lances são aceitos
  
 Esquema do Cenário: Propondo um lance inválido
@@ -24,3 +24,9 @@ Exemplos:
     | valor | nomeUsuario |
     |  0    | Beltrano    |
     | -1    | Ciclano     |
+    
+Cenário: Propondo uma sequência de lances
+ Dado um lance de 10.0 reais do usuário "fulano"
+ E um lance de 15.0 reais do usuário "fulano"
+ Quando propõe vários lances ao leilão
+ Então o segundo lance não é aceito
