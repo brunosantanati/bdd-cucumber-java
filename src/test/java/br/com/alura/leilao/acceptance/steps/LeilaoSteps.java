@@ -1,34 +1,26 @@
 package br.com.alura.leilao.acceptance.steps;
 
-import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Quando;
-
-public class LeilaoSteps {
+public class LeilaoSteps implements io.cucumber.java8.Pt{
 	
-	@Dado("um usuario logado")
-	public void um_usuario_logado() {
-	    
-	}
+	public LeilaoSteps() {
+		Dado("um usuario logado", () -> {
+			System.out.println("step 1");
+		});
+		
+		Quando("acessa a pagina de novo leilao", () -> {
+			System.out.println("step 2");
+		});
+		
+		Quando("prenche o formulario com dados validos", () -> {
+			System.out.println("step 3");
+		});
 
-	@Quando("acessa a pagina de novo leilao")
-	public void acessa_a_pagina_de_novo_leilao() {
-
+		Entao("volta para a pagina de leiloes", () -> {
+			System.out.println("step 4");
+		});
+		
+		Entao("o novo leilao aparece na tabela", () -> {
+			System.out.println("step 5");
+		});
 	}
-	
-	@Quando("prenche o formulario com dados validos")
-	public void prenche_o_formulario_com_dados_validos() {
-
-	}
-	
-	@Entao("volta para a pagina de leiloes")
-	public void volta_para_a_pagina_de_leiloes() {
-
-	}
-	
-	@Entao("o novo leilao aparece na tabela")
-	public void o_novo_leilao_aparece_na_tabela() {
-
-	}
-	
 }
