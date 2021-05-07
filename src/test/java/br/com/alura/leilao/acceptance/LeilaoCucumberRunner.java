@@ -12,7 +12,7 @@ import io.cucumber.junit.CucumberOptions;
 //https://cucumber.io/docs/gherkin/languages/
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "classpath:features")
+@CucumberOptions(features = "classpath:features", tags = "@leilao")
 public class LeilaoCucumberRunner {
 
 }
