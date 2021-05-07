@@ -9,13 +9,14 @@ import br.com.alura.leilao.e2e.pages.NovoLeilaoPage;
 
 public class LeilaoSteps implements io.cucumber.java8.Pt{
 	
+	private Browser browser;
 	private LoginPage loginPage;
 	private LeiloesPage leiloesPage;
 	private NovoLeilaoPage novoLeilaoPage;
 
 	public LeilaoSteps() {
 		Dado("um usuario logado", () -> {
-			Browser browser = new Browser();
+			browser = new Browser();
 			browser.seed();
 			loginPage = browser.getLoginPage();
 			leiloesPage = loginPage.realizaLoginComoFulano();
@@ -35,6 +36,7 @@ public class LeilaoSteps implements io.cucumber.java8.Pt{
 		
 		Entao("o novo leilao aparece na tabela", () -> {
 			Assert.assertTrue(this.leiloesPage.existe("PC Novo", "1500", "01/11/2020", "fulano"));
+			this.browser.clean();
 		});
 	}
 }
