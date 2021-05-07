@@ -1,26 +1,40 @@
 package br.com.alura.leilao.acceptance.steps;
 
+import org.junit.Assert;
+
+import br.com.alura.leilao.e2e.pages.Browser;
+import br.com.alura.leilao.e2e.pages.LeiloesPage;
+import br.com.alura.leilao.e2e.pages.LoginPage;
+import br.com.alura.leilao.e2e.pages.NovoLeilaoPage;
+
 public class LeilaoSteps implements io.cucumber.java8.Pt{
 	
+	private LoginPage loginPage;
+	private LeiloesPage leiloesPage;
+	private NovoLeilaoPage novoLeilaoPage;
+
 	public LeilaoSteps() {
 		Dado("um usuario logado", () -> {
-			System.out.println("step 1");
+			Browser browser = new Browser();
+			browser.seed();
+			loginPage = browser.getLoginPage();
+			leiloesPage = loginPage.realizaLoginComoFulano();
 		});
 		
 		Quando("acessa a pagina de novo leilao", () -> {
-			System.out.println("step 2");
+			novoLeilaoPage = this.leiloesPage.visitaPaginaParaCriarUmNovoLeilao();
 		});
 		
 		Quando("prenche o formulario com dados validos", () -> {
-			System.out.println("step 3");
+			this.leiloesPage = this.novoLeilaoPage.preencheForm("PC Novo", "1500", "01/11/2020");
 		});
 
 		Entao("volta para a pagina de leiloes", () -> {
-			System.out.println("step 4");
+			Assert.assertTrue(this.leiloesPage.estaNaPaginaDeLeiloes());
 		});
 		
 		Entao("o novo leilao aparece na tabela", () -> {
-			System.out.println("step 5");
+			Assert.assertTrue(this.leiloesPage.existe("PC Novo", "1500", "01/11/2020", "fulano"));
 		});
 	}
 }
